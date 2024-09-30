@@ -1,0 +1,39 @@
+<div class="p-grid">
+  <div class="p-col-12 card flex justify-center m-2" *ngIf="isLoadingGlobal">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
+  <div class="flex flex-row w-full justify-around m-2" *ngIf="!isLoadingGlobal">
+    <p-card header="Global Population" styleClass="p-card" >
+      <div>{{ globalPopulation | number}}</div>
+      <div>Total World Population in {{ year | number }}</div>
+    </p-card>
+    <p-card header="Global GDP (USD)" styleClass="p-card">
+      <div>{{ globalGDP | currency:'USD' }}</div>
+      <div>Global Gross Domestic Product</div>
+    </p-card>
+    <p-card header="Global Unemployment Rate" styleClass="p-card">
+      <div>{{ globalUnemploymentRate | number:'1.1-2' }}%</div>
+      <div>Unemployment Rate in {{ year | number }}</div>
+    </p-card>
+  </div>
+  <div class="flex flex-row w-full justify-around m-2 items-center">
+    <p-card header="Population by Country" styleClass="p-card flex h-full">
+      <div class="p-col-12 card flex justify-center" *ngIf="isLoadingPopulation">
+        <p-progressSpinner ariaLabel="loading" />
+      </div>
+      <p-chart type="pie" [data]="populationChartData" [options]="options" *ngIf="!isLoadingPopulation"></p-chart>
+    </p-card>
+    <p-card header="GDP by Country" styleClass="p-card flex">
+      <div class="p-col-12 card flex justify-center" *ngIf="isLoadingGDP">
+        <p-progressSpinner ariaLabel="loading" />
+      </div>
+      <p-chart type="bar" [data]="gdpChartData" [options]="options" *ngIf="!isLoadingGDP"></p-chart>
+    </p-card>
+    <p-card header="Unemployed Rate by Country" styleClass="p-card flex h-full">
+      <div class="p-col-12 card flex justify-center" *ngIf="isLoadingUnemployedRate">
+        <p-progressSpinner ariaLabel="loading" />
+      </div>
+      <p-chart type="doughnut" [data]="unemployedChartData" [options]="options" *ngIf="!isLoadingUnemployedRate"></p-chart>
+    </p-card>
+  </div>
+</div>

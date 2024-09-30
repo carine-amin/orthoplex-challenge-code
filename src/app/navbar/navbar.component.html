@@ -1,0 +1,11 @@
+<div class="card" *ngIf="isLoggedIn">
+  <p-menubar>
+    <ng-template pTemplate="start">
+      <span>My dashboard</span>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <p-button icon="pi pi-sign-out" label="Logout" [outlined]="true" severity="secondary" class="ml-auto flex flex-row gap-2" (click)="logout()">
+      </p-button>
+    </ng-template>
+  </p-menubar>
+</div>

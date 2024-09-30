@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <p-card header="Login" subheader="Login to your account" class="flex justify-center items-center text-center min-h-[100vh]">
+      <div class="flex flex-col gap-2 text-left">
+        <div class="flex flex-col gap-2">
+          <label for="username">Username</label>
+          <input pInputText type="text" id="username" formControlName="username" class="form-control" name="username"/>
+          <div [hidden]="loginForm.controls['username'].valid || !loginForm.controls['username'].dirty" class="text-red-700 text-sm">
+            Username is required
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="password">Password</label>
+          <input pInputText type="password" id="password" formControlName="password" class="form-control" name="password"/>
+          <div [hidden]="loginForm.controls['password'].valid || !loginForm.controls['password'].dirty" class="text-red-700 text-sm">
+            Password is required
+          </div>
+        </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <div class="flex flex-col justify-center mb-1 gap-0.5">
+          <button pButton type="submit" label="Login" [disabled]="!loginForm.valid"></button>
+          <div [hidden]="hideError" class="text-red-700 text-sm">
+            Wrong username or password
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+</form>
